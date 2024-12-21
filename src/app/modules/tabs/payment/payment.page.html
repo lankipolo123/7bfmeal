@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+  <div class="card">
+    <h3>Delivery Address</h3>
+    <p>Blk 9 Lot 69 Brgy Olalia Road Antipolo City</p>
+    <ion-input placeholder="Delivery instruction" [(ngModel)]="deliveryInstruction"></ion-input>
+  </div>
+
+  <div class="card">
+    <h3>Delivery Options</h3>
+    <ion-radio-group [(ngModel)]="selectedDeliveryOption" (ionChange)="onDeliveryOptionChange()">
+      <ion-item color="secondary">
+        <ion-label>Saver (20-35 mins) - P 10.00</ion-label>
+        <ion-radio slot="start" value="saver"></ion-radio>
+      </ion-item>
+      <ion-item color="secondary">
+        <ion-label>Standard (10-25 mins) - P 0.00</ion-label>
+        <ion-radio slot="start" value="standard" checked></ion-radio>
+      </ion-item>
+      <ion-item color="secondary">
+        <ion-label>Priority (5-20 mins) - P 20.00</ion-label>
+        <ion-radio slot="start" value="priority"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+
+  <div class="card">
+    <h3>Payment Method</h3>
+    <ion-item color="secondary" lines="none">
+      <ion-label>Cash on Delivery</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div class="card" color="secondary">
+    <h3>Order Summary</h3>
+    <div *ngFor="let item of cartItems" style="margin-bottom: 10px;">
+      <p style="margin: 0;">{{ item.quantity }}x {{ item.product.name }} - P {{ item.product.price * item.quantity }}</p>
+    </div>
+    <p>Subtotal: P {{ subtotal }}</p>
+    <p>Delivery Fee: P {{ deliveryFee }}</p>
+    <p><strong>Total: P {{ total }}</strong></p>
+  </div>
+
+  <ion-button expand="block" (click)="cancelOrder()" color="danger">
+    Cancel Order
+  </ion-button>
+  <ion-button expand="block" (click)="placeOrder()" color="success">
+    Place Order
+  </ion-button>
+</ion-content>

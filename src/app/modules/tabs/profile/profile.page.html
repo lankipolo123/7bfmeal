@@ -1,0 +1,51 @@
+
+
+
+<ion-content color="secondary">
+  <ion-header>
+    <ion-toolbar color="primary" style="--height: 56px;"> <!-- Set the height of the toolbar -->
+      <!-- Logo on the left side -->
+      <ion-buttons slot="start">
+        <ion-img src="assets/The Seven Breakfast Meals Logo.png" alt="Logo" style="max-width: 150px; height: 100px; object-fit: contain;"></ion-img> <!-- Adjust the size of the logo without affecting the header height -->
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div class="profile-info">
+    <h2>Welcome, {{ userName }}</h2>
+    <ion-button (click)="updateProfile()" expand="full">Update Profile</ion-button>
+  </div>
+
+  <h3>Ordered Items</h3>
+  <ng-container *ngIf="orderedItems.length > 0; else noOrders">
+    <ion-list color="secondary" style="--background: transparent !important; background-color: transparent !important; --ion-background-color: transparent !important; color: var(--ion-text-color, inherit) !important;">
+      <ion-item *ngFor="let order of orderedItems" 
+        style="--background: transparent !important; 
+               --ion-item-background: transparent !important; 
+               --box-shadow: none !important; 
+               --border-color: black !important; 
+               border: 1px solid black; 
+               padding: 10px;">
+
+        <!-- Removed the ion-avatar here -->
+        <ion-label style="background: transparent !important; color: black !important;">
+          <h2>Order Total: P {{ order.total }}</h2>
+          <p>Delivery Option: COD</p>
+          <p>Delivery Instruction: {{ order.deliveryInstruction }}</p>
+          <h3>Items:</h3>
+          <ul>
+            <li *ngFor="let item of order.items">
+              {{ item.quantity }}x {{ item.product.name }} - P {{ item.product.price * item.quantity }}
+              <ion-img [src]="item.product.image" alt="{{ item.product.name }}" style="max-width: 100px; margin-left: 10px;"></ion-img> <!-- Displaying Item Image -->
+            </li>
+          </ul>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-template #noOrders>
+    <ion-item style="--background: transparent !important; --ion-item-background: transparent !important; --box-shadow: none !important; --border-color: transparent !important; --color: var(--ion-text-color, inherit) !important;">
+      <ion-label style="background: transparent !important; color: black !important;">No orders placed yet.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

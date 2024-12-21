@@ -1,0 +1,30 @@
+
+
+  <ion-header>
+    <ion-toolbar color="primary" style="--height: 56px;"> <!-- Set the height of the toolbar -->
+      <!-- Logo on the left side -->
+      <ion-buttons slot="start">
+        <ion-img src="assets/The Seven Breakfast Meals Logo.png" alt="Logo" style="max-width: 150px; height: 100px; object-fit: contain;"></ion-img> <!-- Adjust the size of the logo without affecting the header height -->
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content color="secondary" *ngIf="product" class="product-detail-content">
+  <div class="product-card">
+    <img [src]="product.image" alt="{{ product.name }}" class="product-image" />
+    <h2 class="product-name">{{ product.name }}</h2>
+    <p class="product-price">P {{ product.price }}</p>
+
+    <div class="quantity-selector">
+      <button (click)="decreaseQuantity()" class="quantity-button">-</button>
+      <span class="quantity">{{ quantity }}</span>
+      <button (click)="increaseQuantity()" class="quantity-button">+</button>
+    </div>
+
+    <p class="product-description">{{ product.description || 'No description available.' }}</p>
+
+    <ion-button expand="block" (click)="addToCart()" class="add-to-cart-button">Add to Cart</ion-button>
+    <ion-button expand="block" (click)="buyNow()" class="buy-now-button" color="success">Buy Now</ion-button>
+  </div>
+</ion-content>
+

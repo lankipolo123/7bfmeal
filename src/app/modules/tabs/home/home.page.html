@@ -1,0 +1,43 @@
+
+
+<ion-content color="secondary">
+  
+  <ion-header>
+    <div class="header-container">
+        <ion-toolbar color="primary">
+          <img src="assets/7bfLogo.png" alt="Icon Image" class="logo-img" onclick="toggleMenu()">
+            <img src="assets/textTitle.png" alt="Text Image" class="title-img">
+        </ion-toolbar>
+    </div>
+</ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let product of products" size="6">
+        <div class="product-container">
+          <!-- Product image -->
+          <img [src]="product.image || 'assets/placeholder.png'" alt="product" class="product-image" (click)="viewProduct(product)" />
+
+          <!-- Add to Cart button -->
+          <ion-button 
+            class="add-button" 
+            (click)="addToCart(product)"
+            fill="solid" 
+            size="small" 
+            color="warning"
+            >
+            +
+          </ion-button>
+        </div>
+        
+        <!-- Product name and price -->
+        <div class="product-info">
+          <p class="product-name">{{ product.name }}</p>
+          <p class="product-price">{{ product.price | currency:'PHP' }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+

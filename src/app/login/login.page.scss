@@ -1,0 +1,36 @@
+.page-background {
+    --background: var(--ion-color-secondary);  /* Apply secondary color to the entire page */
+  }
+  
+  .login-card {
+    border: 2px solid black;  /* Black border for the card */
+    box-shadow: none;
+    margin: 20px;
+    background-color: white;  /* White background for the card content */
+  }
+  
+  ion-card-header {
+    background-color: var(--ion-color-primary);  /* You can adjust this to suit your color scheme */
+    color: white;
+  }
+  
+  ion-card-title {
+    font-weight: bold;
+  }
+  
+  form {
+    padding: 20px;
+  }
+  
+  ion-item {
+    margin-bottom: 20px;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+  }
+  
+  ion-content {
+    --background: var(--ion-color-secondary);  /* Secondary color as background */
+  }
+  

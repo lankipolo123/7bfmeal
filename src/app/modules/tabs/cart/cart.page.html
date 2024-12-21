@@ -1,0 +1,54 @@
+
+<ion-content color="secondary">
+  <ion-header>
+    <ion-toolbar color="primary" style="--height: 56px;"> <!-- Set the height of the toolbar -->
+      <!-- Logo on the left side -->
+      <ion-buttons slot="start">
+        <ion-img src="assets/The Seven Breakfast Meals Logo.png" alt="Logo" style="max-width: 150px; height: 100px; object-fit: contain;"></ion-img> <!-- Adjust the size of the logo without affecting the header height -->
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <!-- Cart Items List -->
+  <ion-list *ngIf="cartItems.length > 0" style="--ion-item-background: transparent; --ion-item-border-color: transparent;">
+    <ion-item *ngFor="let item of cartItems" style="background-color: transparent; border: none;">
+      <ion-thumbnail slot="start">
+        <img [src]="item.product.image" alt="{{ item.product.name }}" />
+      </ion-thumbnail>
+      <ion-label style="color: black;">
+        <h2 style="margin: 0; font-size: 16px; font-weight: bold; color: black;">{{ item.product.name }}</h2>
+        <p style="margin: 0; font-size: 14px; color: black;">P {{ item.product.price }}</p>
+        <div class="quantity-control">
+          <ion-button (click)="decreaseQuantity(item)" color="tertiary" fill="outline" shape="round">-</ion-button>
+          <span style="font-size: 14px; color: black;">{{ item.quantity }}</span>
+          <ion-button (click)="increaseQuantity(item)" color="tertiary" fill="outline" shape="round">+</ion-button>
+        </div>
+      </ion-label>
+      <ion-button slot="end" (click)="removeItem(item)" color="danger" fill="clear">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Empty Cart Message -->
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty!</p>
+  </div>
+
+  <!-- Total Section -->
+  <div class="cart-summary" *ngIf="cartItems.length > 0">
+    <h3>Order Summary</h3>
+    <p>Subtotal: P {{ subtotal }}</p>
+    <p>Delivery Fee: P {{ deliveryFee }}</p>
+    <p><strong>Total: P {{ total }}</strong></p>
+  </div>
+
+  <!-- Actions -->
+  <div class="cart-actions" *ngIf="cartItems.length > 0">
+    <ion-button expand="block" (click)="proceedToPayment()" color="primary">
+      Review Payment and Address
+    </ion-button>
+    <ion-button expand="block" (click)="clearCart()" color="danger">
+      Clear Cart
+    </ion-button>
+  </div>
+</ion-content>
